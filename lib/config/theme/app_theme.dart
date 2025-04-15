@@ -14,8 +14,9 @@ const colorList = <Color>[
 
 class AppTheme {
   final int selectedColor;
+  final bool isDarkMode;
 
-  AppTheme({this.selectedColor = 0})
+  AppTheme({this.selectedColor = 0, this.isDarkMode = false})
     : assert(selectedColor >= 0, 'Selected color must not be negative'),
       assert(
         selectedColor < colorList.length,
@@ -23,6 +24,7 @@ class AppTheme {
       );
 
   ThemeData getTheme() => ThemeData(
+    brightness: isDarkMode ? Brightness.dark : Brightness.light,
     colorSchemeSeed: colorList[selectedColor],
     appBarTheme: AppBarTheme(centerTitle: false),
   );
